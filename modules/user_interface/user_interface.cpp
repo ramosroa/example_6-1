@@ -143,6 +143,20 @@ static void userInterfaceDisplayInit()
     displayStringWrite( "Alarm:" );
 }
 
+static void userInterfaceDisplayInit()
+{
+    displayInit();
+     
+    displayCharPositionWrite ( 0,0 );
+    displayStringWrite( "Tmp:" );
+
+    displayCharPositionWrite ( 9,0 );
+    displayStringWrite( "Gas:" );
+    
+    displayCharPositionWrite (0,1 );
+    displayStringWrite( "Alarm:" );
+}
+
 static void userInterfaceDisplayUpdate()
 {
     static int accumulatedDisplayTime = 0;
@@ -154,20 +168,20 @@ static void userInterfaceDisplayUpdate()
         accumulatedDisplayTime = 0;
 
         sprintf(temperatureString, "%.0f", temperatureSensorReadCelsius());
-        displayCharPositionWrite ( 12,0 );
+        displayCharPositionWrite ( 4,0 );
         displayStringWrite( temperatureString );
-        displayCharPositionWrite ( 14,0 );
+        displayCharPositionWrite ( 6,0 );
         displayStringWrite( "'C" );
 
-        displayCharPositionWrite ( 4,1 );
+        displayCharPositionWrite ( 13,0 );
 
         if ( gasDetectorStateRead() ) {
-            displayStringWrite( "Detected    " );
+            displayStringWrite( "D" );
         } else {
-            displayStringWrite( "Not Detected" );
+            displayStringWrite( "ND" );
         }
 
-        displayCharPositionWrite ( 6,2 );
+        displayCharPositionWrite ( 6,1 );
         
         if ( sirenStateRead() ) {
             displayStringWrite( "ON " );
